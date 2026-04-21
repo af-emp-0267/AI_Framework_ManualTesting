@@ -465,7 +465,3 @@ Default mode: 'include' (backward compatibility)
 After testing a new feature, commit the generated `<feature>_TC_execution.md` file for historical reference.
 
 ---
-
-## 📜 License
-
-Internal use only — TMT QA Team.
