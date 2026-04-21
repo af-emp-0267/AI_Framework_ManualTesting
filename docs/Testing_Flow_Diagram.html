@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing Execution Flow Diagram</title>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
+        .container { background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto; }
+        h1 { color: #333; text-align: center; }
+        p.desc { text-align: center; color: #666; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TMT Platform E2E Testing Flow</h1>
+        <p class="desc">This diagram illustrates the complete end-to-end process for testing payout features.</p>
+        
+        <div class="mermaid">
+        graph TD
+            A[1. Create Brand <br>with Products] --> B[2. Create Campaign <br>Configure Geo Payout]
+            B --> C[3. Create Affiliate <br>to promote Campaign]
+            C --> D[4. Manage Links <br>Generate Tracking Link]
+            D --> E[5. Paste Link in Browser <br>Extract tracking_token]
+            
+            subgraph "Postman / curl (API Execution)"
+            E --> F[6. POST Create Customer <br>Pass token + Country/Region/City]
+            F --> G[7. POST Create Activity <br>Deposit Event]
+            end
+            
+            G --> H((Wait ~2 Minutes))
+            H --> I[8. Check Activity Report <br>Verify Geo Status/Reason]
+            
+            style A fill:#e1f5fe,stroke:#01579b
+            style B fill:#e1f5fe,stroke:#01579b
+            style C fill:#e1f5fe,stroke:#01579b
+            style D fill:#e1f5fe,stroke:#01579b
+            style E fill:#fff3e0,stroke:#e65100
+            style F fill:#e8f5e9,stroke:#1b5e20
+            style G fill:#e8f5e9,stroke:#1b5e20
+            style H fill:#fce4ec,stroke:#880e4f
+            style I fill:#f3e5f5,stroke:#4a148c
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "title": "TMT Platform – Complete Testing Workflow & Setup",
+  "summary": "Everything needed to test features on the TMT affiliate marketing platform (tmt.affnook.io / oscorp7.affnookqa1.online). Covers the full test execution flow: Brand → Campaign → Affiliate → Tracking Link → Postman (Create Customer + Activity) → Reports. Includes Postman header config per panel (TMT, AB Network, AB Operator, BiAffiliation, KtAccount, tmtpanel), API endpoints, x-api-key location, report wait time (~2 min), and how to get the tracking_token from the browser URL after clicking a generated affiliate link. Also references how to build TC sheets and execute them.",
+  "tags": ["tmt", "testing", "manual-testing", "postman", "affiliate", "campaign", "payout", "geo-targeting", "reports"],
+  "created": "2026-04-21",
+  "last_updated": "2026-04-21",
+  "references": [
+    "https://tmt.affnook.io",
+    "https://oscorp7.affnookqa1.online",
+    "conversation:0ddf05fe-ba7f-4040-bdbe-d04f805efbb9"
+  ],
+  "artifacts": [
+    "tmt_testing_workflow.md",
+    "postman_config.md",
+    "tmt_testing_skill.md"
+  ]
+}
