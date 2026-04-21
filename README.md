@@ -1,6 +1,6 @@
-# 🧪 TMT Manual Testing Framework (AI-Assisted)
+# 🧪 Affnook Manul Testing Framework (AI-Assisted)
 
-> An AI-powered manual testing framework for the **TMT Affiliate Marketing Platform** using [Antigravity](https://antigravity.dev) Skills, Workflows, and Knowledge Items.  
+> An AI-powered manual testing framework for the **Affnook Affiliate Marketing Platform** using [Antigravity](https://antigravity.dev) Skills, Workflows, and Knowledge Items.  
 > Instead of writing test scripts, you describe what to test in plain English — the AI assistant executes curl-based E2E tests, generates TC sheets, and guides report verification.
 
 ---
