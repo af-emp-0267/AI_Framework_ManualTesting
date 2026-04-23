@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Documentation RAG Architecture Flow</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <!-- Include Mermaid.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h1>QA Documentation RAG Architecture Flow</h1>
+    <p class="subtitle">An illustration of how custom Retrieval-Augmented Generation processes test cases and queries.</p>
+
+    <div class="mermaid">
+        graph TD
+            %% Define Styles
+            classDef userNode fill:#e1bee7,stroke:#8e24aa,stroke-width:2px,color:#000
+            classDef dataNode fill:#bbdefb,stroke:#1976d2,stroke-width:2px,color:#000
+            classDef processNode fill:#ffe0b2,stroke:#f57c00,stroke-width:2px,color:#000
+            classDef dbNode fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#000
+            classDef llmNode fill:#ffccbc,stroke:#e64a19,stroke-width:2px,color:#000
+
+            %% Data Ingestion Phase
+            subgraph Ingestion Pipeline ["Phase 1: Document Processing (Runs once or on updates)"]
+                A1["Test Case CSVs"]:::dataNode
+                A2["Markdown Guides"]:::dataNode
+                A3["PRD Documents"]:::dataNode
+                
+                B["Document Loader & Parser<br/>(e.g., LangChain/LlamaIndex)"]:::processNode
+                C["Text Splitter<br/>(Breaks docs into smaller chunks)"]:::processNode
+                D["Embedding Model<br/>(Converts text to vector numbers)"]:::processNode
+                E[("Local Vector Database<br/>ChromaDB / FAISS")]:::dbNode
+
+                A1 --> B
+                A2 --> B
+                A3 --> B
+                B --> C
+                C --> D
+                D -->|Stores Embeddings| E
+            end
+
+            %% Query Phase
+            subgraph Retrieval & Generation Phase ["Phase 2: QA Tester Querying"]
+                F(("QA Tester")):::userNode
+                G["User Query<br/>(e.g., 'What are the pagination test cases?')"]:::processNode
+                
+                H["Query Embedding<br/>(Converts query to vector)"]:::processNode
+                I{"Similarity Search<br/>(Finds closest matching docs)"}:::processNode
+                
+                J["Retrieved Context<br/>(Relevant chunks from CSVs/MDs)"]:::dataNode
+                
+                K["LLM Prompt Builder<br/>Combines Query + Context"]:::processNode
+                L(("Large Language Model<br/>Gemini / GPT")):::llmNode
+                
+                M["Final Generated Answer"]:::dataNode
+
+                F -->|Asks Question| G
+                G --> H
+                H -->|Searches DB| I
+                E -.->|Provides Vectors| I
+                I -->|Returns Matches| J
+                
+                G --> K
+                J --> K
+                K --> L
+                L --> M
+                M -->|Displays Answer| F
+            end
+
+            %% Link the phases visually
+            E ~~~ G
+    </div>
+</div>
+
+</body>
+</html>

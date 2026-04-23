@@ -1,0 +1,12 @@
+Module,TC ID,Test Case,Priority,Steps,Expected Result,Actual Result,Status,Bug ID
+1. Affiliate Onboarding,AFF-F-001,Verify pre-built sign-up form allows new affiliates to register successfully,P0,Execute step per TC description,System behaves as expected without errors.,,Pending,
+1. Affiliate Onboarding,AFF-F-002,Verify custom affiliate grouping allows categorizing affiliates by performance,P1,Execute step per TC description,System behaves as expected without errors.,,Pending,
+2. Fraud Detection,FRD-F-001,Verify system blocks traffic originating from known data centers,P0,Execute step per TC description,System behaves as expected without errors.,,Pending,
+2. Fraud Detection,FRD-F-002,Verify admin can blacklist suspicious IPs and traffic from them is rejected,P0,Execute step per TC description,System behaves as expected without errors.,,Pending,
+2. Fraud Detection,FRD-F-003,Verify system filters and blocks conversions from unknown IPs or OS,P1,Execute step per TC description,System behaves as expected without errors.,,Pending,
+2. Fraud Detection,FRD-F-004,Verify high-risk affiliates are flagged and barred from sending fraud traffic,P1,Execute step per TC description,System behaves as expected without errors.,,Pending,
+3. Invoice Automation,INV-F-001,Verify automated invoice generation works at a set frequency (e.g. weekly/monthly),P0,Execute step per TC description,System behaves as expected without errors.,,Pending,
+3. Invoice Automation,INV-F-002,Verify automated invoice generation respects the configured payout threshold,P0,Execute step per TC description,System behaves as expected without errors.,,Pending,
+3. Invoice Automation,INV-F-003,Verify invoices support generation in 50+ different currencies accurately,P1,Execute step per TC description,System behaves as expected without errors.,,Pending,
+3. Invoice Automation,INV-F-004,Verify custom invoice settings can be applied on a per-affiliate basis,P1,Execute step per TC description,System behaves as expected without errors.,,Pending,
+4. API Integration,API-F-001,Verify two-way API integration accurately pushes and pulls campaign data,P0,Execute step per TC description,System behaves as expected without errors.,,Pending,
